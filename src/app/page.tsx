@@ -13,7 +13,7 @@ import React from "react";
 export default function page() {
   return (
     <MaxWrapper>
-      <Navbar />
+      {/* <Navbar /> */}
       <Hero />
       <More />
       <Newpost />

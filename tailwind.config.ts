@@ -31,7 +31,16 @@ const config: Config = {
         Bsecondary: "#F7F7FF",
         Binactive: "#918587",
         Btext: "#1a1a1a",
-
+        facebook: "#1877F2",
+        twitter: "#1DA1F2",
+        pinterest: "#E60023",
+        youtube: "#FF0000",
+        instagram: {
+          start: "#F58529",
+          middle: "#DD2A7B",
+          end: "#515BD4",
+        },
+        whatsapp: "#25D366",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
