@@ -1,4 +1,5 @@
 "use client";
+import Maylike from "@/components/Maylike";
 import { Facebook, Mail, Pinterest, Twitter } from "@/components/svgs";
 import TrendingandVideo from "@/components/TrendingandVideo";
 import MaxWrapper from "@/components/ui/MaxWrapper";
@@ -73,7 +74,7 @@ export default function page() {
           </div>
           <div>
             <hr className="   border-1 border-gray-300   mt-5" />
-            <h2 className=" h2 font-extrabold italic ">
+            <h2 className=" h2 font-extrabold italic mt-4 ">
               This content has been published for free as part of
               BellaNaija.com‘s commitment to youth, education, healthcare, and
               community development as part of our corporate social
@@ -176,7 +177,7 @@ export default function page() {
           
           */}
           {/* dont miss */}
-          <div className=" mt-5 gap-10 flex">
+          <div className=" mt-10 gap-14 flex">
             <Link href={"#"} className=" group flex-1">
               <div className="h3 line-clamp-3 items-center gap-2 flex ">
                 <ChevronLeft className=" shrink-0 h-10 text-gray-400 w-10 " />
@@ -210,10 +211,39 @@ export default function page() {
               </div>
             </Link>
           </div>
+
+          <hr className="   border-1 border-gray-300   mt-5" />
+
+          {/* dogged naija socials */}
+
+          <div className=" mt-5">
+            <p className="  p2 font-bold">
+              {" "}
+              Living & celebrating the african Dream! catch all the scoop on{" "}
+              <Link className="font-bold text-BAccent" href={"#"}>
+                {" "}
+                www.doggednaija.com{" "}
+              </Link>
+              follow us Twitter:
+              <Link className=" font-light p2 text-BAccent" href={"#"}>
+                {" "}
+                @doggednaija{" "}
+              </Link>{" "}
+              Facebook:
+              <Link href={"#"} className="text-BAccent font-light p2 ">
+                {" "}
+                @doggednaija{" "}
+              </Link>
+            </p>
+          </div>
+
+          {/* end of belle naija socials */}
+          <Maylike />
         </div>
         <div className=" col-span-1">
           <TrendingandVideo />
         </div>
+        {/* may like */}
       </div>
     </MaxWrapper>
   );

@@ -6,7 +6,7 @@ interface maxType {
 
 const MaxWrapper: React.FC<maxType> = ({ children }) => {
   return (
-    <div className="  flex flex-col flex-1   min-h-lvh  bg-white  ">
+    <div className="  flex flex-col flex-1 h-full   min-h-lvh  bg-white  ">
       {children}
     </div>
   );
