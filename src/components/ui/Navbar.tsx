@@ -1,16 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import {
-  ArrowBigDown,
-  ChevronDown,
-  Facebook,
-  Instagram,
-  Menu,
-  Search,
-  Twitter,
-  X,
-  Youtube,
-} from "lucide-react";
+import { Facebook, Twitter, Instagram, Youtube } from "@/components/svgs/";
+import { ArrowBigDown, ChevronDown, Menu, Search, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -48,7 +39,7 @@ export default function Navbar() {
               }
             : { x: "-100%" }
         }
-        className=" absolute z-10 pb-10  top-0 left-0  flex  flex-col  bg-white  w-[300px] pt-10 px-5 h-lvh "
+        className=" absolute z-10 pb-10  sm:w-full w-full   top-0 left-0  flex  flex-col  bg-white  md:w-[300px] pt-10 px-5 h-lvh "
       >
         {/*  mobile nav header */}
         <div className=" mb-10 flex    justify-center   items-center ">
@@ -68,24 +59,21 @@ export default function Navbar() {
         <div className="  flex-1 flex flex-col">
           <Link
             href={"#"}
-            className=" h2 px-2 py-4  font-medium uppercase border-b "
+            className=" h6 px-2 py-2  font-medium uppercase border-b "
           >
-            {" "}
-            NEWS{" "}
+            Entertainment
           </Link>
           <Link
             href={"#"}
-            className=" h2 px-2 py-4  font-medium uppercase border-b "
+            className=" h6 px-2 py-2  font-medium uppercase border-b "
           >
-            {" "}
-            NEWS{" "}
+            MOvies
           </Link>
           <Link
             href={"#"}
-            className=" h2 px-2 py-4  font-medium uppercase border-b "
+            className=" h6 px-2 py-2  font-medium uppercase border-b "
           >
-            {" "}
-            NEWS{" "}
+            Sport
           </Link>
 
           {/*  */}
@@ -110,35 +98,35 @@ export default function Navbar() {
 
       <div className=" md:flex hidden gap-4  ">
         <Link
-          className=" relative  after:contents-[''] after:left-0 after:w-[100%] after:top-[100%]  hover:after:bg-BAccent after:h-1 after:absolute p2  font-bold  uppercase "
+          className=" relative  after:contents-[''] after:left-0 after:w-[100%] after:top-[100%]  hover:after:bg-BAccent after:h-px after:absolute h6  font-bold  uppercase "
           href={"#"}
         >
           {" "}
           Relationships
         </Link>
         <Link
-          className=" relative  after:contents-[''] after:left-0 after:w-[100%] after:top-[100%]  hover:after:bg-BAccent after:h-1 after:absolute p2  font-bold  uppercase "
+          className=" relative  after:contents-[''] after:left-0 after:w-[100%] after:top-[100%]  hover:after:bg-BAccent after:h-px after:absolute h6  font-bold  uppercase "
           href={"#"}
         >
           {" "}
           Weddings
         </Link>
         <Link
-          className=" relative  after:contents-[''] after:left-0 after:w-[100%] after:top-[100%]  hover:after:bg-BAccent after:h-1 after:absolute p2  font-bold  uppercase "
+          className=" relative  after:contents-[''] after:left-0 after:w-[100%] after:top-[100%]  hover:after:bg-BAccent after:h-px after:absolute h6  font-bold  uppercase "
           href={"#"}
         >
           {" "}
           Style
         </Link>
         <Link
-          className=" relative  after:contents-[''] after:left-0 after:w-[100%] after:top-[100%]  hover:after:bg-BAccent after:h-1 after:absolute p2  font-bold  uppercase "
+          className=" relative  after:contents-[''] after:left-0 after:w-[100%] after:top-[100%]  hover:after:bg-BAccent after:h-px after:absolute h6  font-bold  uppercase "
           href={"#"}
         >
           {" "}
           Music
         </Link>
         <Link
-          className=" relative  after:contents-[''] after:left-0 after:w-[100%] after:top-[100%]  hover:after:bg-BAccent after:h-1 after:absolute p2  font-bold  uppercase "
+          className=" relative  after:contents-[''] after:left-0 after:w-[100%] after:top-[100%]  hover:after:bg-BAccent after:h-px after:absolute h6  font-bold  uppercase "
           href={"#"}
         >
           {" "}
@@ -147,7 +135,7 @@ export default function Navbar() {
         <motion.div
           onHoverStart={() => setHover(true)}
           onHoverEnd={() => setHover(false)}
-          className=" gap-1 flex flex-start items-center relative after:contents-[''] after:left-0 after:w-[100%] after:top-[100%]  hover:after:bg-BAccent after:h-1 after:absolute p2 font-bold  uppercase   "
+          className=" gap-1 flex flex-start items-center relative after:contents-[''] after:left-0 after:w-[100%] after:top-[100%]  hover:after:bg-BAccent after:h-px after:absolute h6 font-bold  uppercase   "
         >
           {" "}
           more
@@ -167,35 +155,31 @@ export default function Navbar() {
                   y: 10,
                   opacity: 0,
                 }}
-                className=" z-[9] bg-white top-[140%] left-0 absolute "
+                className=" z-[9] bg-white top-[140%] left-0 w-[200px] absolute "
               >
                 <Link
                   href={"#"}
-                  className=" block truncate   line-clamp-1  max-w-[20ch]  py-3  hover:bg-Binactive/20 px-3  font-medium uppercases border-b border-b-Binactive/50 "
+                  className=" block truncate text-center  line-clamp-1  max-w-[20ch]  py-4  hover:bg-Binactive/10 px-3 h6 font-medium uppercases border-b border-b-Binactive/50 "
                 >
-                  HOW TO DO THIS and how ti si shwt i wanted
-                  sdsfsdfsdfsdfsdssafd
+                  sweet spots
                 </Link>
                 <Link
                   href={"#"}
-                  className=" block truncate   line-clamp-1  max-w-[20ch]  py-3  hover:bg-Binactive/20 px-3 h3 font-medium uppercases border-b border-b-Binactive/50 "
+                  className=" block truncate text-center  line-clamp-1  max-w-[20ch]  py-4  hover:bg-Binactive/10 px-3 h6 font-medium uppercases border-b border-b-Binactive/50 "
                 >
-                  HOW TO DO THIS and how ti si shwt i wanted
-                  sdsfsdfsdfsdfsdssafd
+                  sweet spots
                 </Link>
                 <Link
                   href={"#"}
-                  className=" block truncate   line-clamp-1  max-w-[20ch]  py-3  hover:bg-Binactive/20 px-3 h3 font-medium uppercases border-b border-b-Binactive/50 "
+                  className=" block truncate text-center  line-clamp-1  max-w-[20ch]  py-4  hover:bg-Binactive/10 px-3 h6 font-medium uppercases border-b border-b-Binactive/50 "
                 >
-                  HOW TO DO THIS and how ti si shwt i wanted
-                  sdsfsdfsdfsdfsdssafd
+                  sweet spots
                 </Link>
                 <Link
                   href={"#"}
-                  className=" block truncate   line-clamp-1  max-w-[20ch]  py-3  hover:bg-Binactive/20 px-3 h3 font-medium uppercases border-b border-b-Binactive/50 "
+                  className=" block truncate text-center  line-clamp-1  max-w-[20ch]  py-4  hover:bg-Binactive/10 px-3 h6 font-medium uppercases border-b border-b-Binactive/50 "
                 >
-                  HOW TO DO THIS and how ti si shwt i wanted
-                  sdsfsdfsdfsdfsdssafd
+                  sweet spots
                 </Link>
               </motion.div>
             )}
@@ -209,10 +193,10 @@ export default function Navbar() {
 
       <div className=" flex gap-6">
         <Search className=" h-5 w-5" />
-        <Facebook className=" h-5 w-5" fill="#000" />
-        <Twitter className=" h-5 w-5" fill="#000" />
-        <Instagram className=" h-5 w-5" />
-        <Youtube className=" h-5 w-5" />
+        <Facebook className=" md:block hidden fill-current h-5 w-5" />
+        <Twitter className=" md:block hidden fill-current h-5 w-5" />
+        <Instagram className=" md:block hidden fill-current h-5 w-5" />
+        <Youtube className=" md:block hidden fill-current h-5 w-5" />
       </div>
     </nav>
   );

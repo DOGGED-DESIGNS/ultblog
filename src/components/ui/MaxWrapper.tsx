@@ -1,12 +1,19 @@
+import { cn } from "@/lib/utils";
 import React from "react";
 
 interface maxType {
   children: React.ReactNode;
+  newClass?: String;
 }
 
-const MaxWrapper: React.FC<maxType> = ({ children }) => {
+const MaxWrapper: React.FC<maxType> = ({ children, newClass }) => {
   return (
-    <div className="  flex flex-col flex-1 h-full   min-h-lvh  bg-white  ">
+    <div
+      className={cn(
+        "  flex flex-col flex-1 h-full   min-h-lvh  bg-white  ",
+        newClass
+      )}
+    >
       {children}
     </div>
   );

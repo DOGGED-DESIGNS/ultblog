@@ -16,7 +16,7 @@ export default function Funstuff() {
         Checkout these stories from out network{" "}
       </p>
 
-      <div className=" mx-auto grid grid-cols-3 gap-10 mt-8 max-w-screen-lg">
+      <div className=" mx-auto grid grid-cols-1  lg:grid-cols-3 gap-10 mt-8 max-w-screen-lg">
         <div className=" bg-white">
           <div className=" relative w-full aspect-[4/5]">
             <Image
@@ -40,7 +40,7 @@ export default function Funstuff() {
             </p>
           </div>
         </div>
-        <div className="bg-white"></div>
+        <div className="lg:block hidden bg-white"></div>
         <div className=" bg-white">
           <div className=" relative w-full aspect-[4/5]">
             <Image

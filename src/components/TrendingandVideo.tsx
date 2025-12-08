@@ -12,7 +12,7 @@ export default function TrendingandVideo() {
       <div className=" relative flex  w-full">
         <div
           onClick={() => setToggle(false)}
-          className=" cursor-pointer h2 flex-1 font-bold   text-center"
+          className="  border cursor-pointer h2 flex-1 font-bold   text-center"
         >
           {" "}
           Trending{" "}
@@ -51,15 +51,18 @@ export default function TrendingandVideo() {
       <AnimatePresence mode="wait">
         {toggle ? (
           <motion.div
+            className=" flex  flex-col "
             key={"samll"}
             initial={{ opacity: 0, y: 10 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 10, opacity: 0 }}
           >
-            <Smallvideo />
-            <Smallvideo />
-            <Smallvideo />
-            <Smallvideo />
+            <div className=" mx-auto">
+              <Smallvideo />
+              <Smallvideo />
+              <Smallvideo />
+              <Smallvideo />
+            </div>
           </motion.div>
         ) : (
           <motion.div
@@ -67,13 +70,16 @@ export default function TrendingandVideo() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 10, opacity: 0 }}
+            className="flex  "
           >
-            <Smalltrending />
-            <Smalltrending />
-            <Smalltrending />
-            <Smalltrending />
-            <Smalltrending />
-            <Smalltrending />
+            <div className=" w-full  mx-auto">
+              <Smalltrending />
+              <Smalltrending />
+              <Smalltrending />
+              <Smalltrending />
+              <Smalltrending />
+              <Smalltrending />
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

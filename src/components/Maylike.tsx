@@ -10,9 +10,9 @@ export default function Maylike() {
         <span className=" block flex-1 h-[2px]  bg-BAccent" />
       </h1>
 
-      <div className=" gap-5 mt-10 grid grid-cols-3  ">
-        <Link className=" group" href={"#"}>
-          <div className="    after:z-10 after:contents-[''] after:absolute after:inset-0  after:transition-all after:duration-300 relative w-full aspect-video after:group-hover:bg-black/20 ">
+      <div className=" gap-5 mt-10 grid grid-cols-1  lg:grid-cols-3  ">
+        <Link className=" flex lg:block gap-2 group" href={"#"}>
+          <div className="    after:z-10 after:contents-[''] after:absolute after:inset-0  after:transition-all after:duration-300 relative min-w-24 lg:aspect-video aspect-square after:group-hover:bg-black/20 ">
             <Image
               fill
               alt="image"
@@ -20,13 +20,13 @@ export default function Maylike() {
               className=" w-full h-full object-cover object-top "
             />
           </div>
-          <p className=" group-hover:text-slate-400 transition-all duration-300 font-bold mt-2 h9">
+          <p className=" group-hover:text-slate-400 transition-all duration-300 font-bold mt-2 h7">
             Twenty Years On Stage: Yvonne Jegede on Fame, Purpose and Giving
             Back
           </p>
         </Link>
-        <Link className=" group" href={"#"}>
-          <div className="    after:z-10 after:contents-[''] after:absolute after:inset-0  after:transition-all after:duration-300 relative w-full aspect-video after:group-hover:bg-black/20 ">
+        <Link className=" flex lg:block gap-2 group" href={"#"}>
+          <div className="    after:z-10 after:contents-[''] after:absolute after:inset-0  after:transition-all after:duration-300 relative min-w-24 lg:aspect-video aspect-square after:group-hover:bg-black/20 ">
             <Image
               fill
               alt="image"
@@ -34,13 +34,13 @@ export default function Maylike() {
               className=" w-full h-full object-cover object-top "
             />
           </div>
-          <p className=" group-hover:text-slate-400 transition-all duration-300 font-bold mt-2 h9">
+          <p className=" group-hover:text-slate-400 transition-all duration-300 font-bold mt-2 h7">
             Twenty Years On Stage: Yvonne Jegede on Fame, Purpose and Giving
             Back
           </p>
         </Link>
-        <Link className=" group" href={"#"}>
-          <div className="    after:z-10 after:contents-[''] after:absolute after:inset-0  after:transition-all after:duration-300 relative w-full aspect-video after:group-hover:bg-black/20 ">
+        <Link className=" flex lg:block gap-2 group" href={"#"}>
+          <div className="    after:z-10 after:contents-[''] after:absolute after:inset-0  after:transition-all after:duration-300 relative min-w-24 lg:aspect-video aspect-square after:group-hover:bg-black/20 ">
             <Image
               fill
               alt="image"
@@ -48,7 +48,7 @@ export default function Maylike() {
               className=" w-full h-full object-cover object-top "
             />
           </div>
-          <p className=" group-hover:text-slate-400 transition-all duration-300 font-bold mt-2 h9">
+          <p className=" group-hover:text-slate-400 transition-all duration-300 font-bold mt-2 h7">
             Twenty Years On Stage: Yvonne Jegede on Fame, Purpose and Giving
             Back
           </p>

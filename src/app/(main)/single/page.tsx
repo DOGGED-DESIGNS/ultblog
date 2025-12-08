@@ -11,7 +11,7 @@ import React from "react";
 export default function page() {
   return (
     <MaxWrapper>
-      <div className=" max-w-screen-xl  gap-10  grid grid-cols-3 py-12 px-5 w-full mx-auto">
+      <div className=" max-w-screen-xl  gap-10  grid grid-cols-1  lg:grid-cols-3 py-12 px-5 w-full mx-auto">
         <div className=" col-span-2">
           <div className="  inline-block -skew-x-12 bg-BAccent p-1 px-5 mr-auto ">
             <p className=" font-bold p2 uppercase text-white  "> career </p>
@@ -177,10 +177,10 @@ export default function page() {
           
           */}
           {/* dont miss */}
-          <div className=" mt-10 gap-14 flex">
+          <div className=" mt-10 gap-14 lg:flex">
             <Link href={"#"} className=" group flex-1">
               <div className="h3 line-clamp-3 items-center gap-2 flex ">
-                <ChevronLeft className=" shrink-0 h-10 text-gray-400 w-10 " />
+                <ChevronLeft className="lg:block hidden shrink-0 h-10 text-gray-400 w-10 " />
                 <div>
                   <p className=" h6 font-bold  uppercase text-BAccent">
                     dont miss
@@ -207,7 +207,7 @@ export default function page() {
                     women&apos;s empowerment at 2025 WIMBIC Annual Conference
                   </h2>
                 </div>
-                <ChevronRight className=" shrink-0 h-10 text-gray-400 w-10 " />
+                <ChevronRight className=" lg:block hidden shrink-0 h-10 text-gray-400 w-10 " />
               </div>
             </Link>
           </div>
@@ -230,7 +230,7 @@ export default function page() {
                 @doggednaija{" "}
               </Link>{" "}
               Facebook:
-              <Link href={"#"} className="text-BAccent font-light p2 ">
+              <Link href={"#"} className="text-BAccent font-light p2  ">
                 {" "}
                 @doggednaija{" "}
               </Link>

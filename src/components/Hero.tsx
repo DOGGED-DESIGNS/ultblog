@@ -9,60 +9,63 @@ function Hero() {
     <div className="    py-10 mt-10 px-5 justify-center max-w-screen-xl  mx-auto gap-10 grid grid-cols-1 lg:grid-cols-4   md:grid-cols-3  ">
       <div className=" col-span-1 md:order-3 lg:order-1 order-2  ">
         <div className="">
-          <h2 className=" justify-center flex items-center  gap-2 h1  uppercase font-outfit  font-extrabold mb-10  text-center">
-            <span className=" h-2 block  w-10 bg-BAccent" />
+          <h2 className=" justify-center flex items-center  gap-2 h2  uppercase font-outfit  font-extrabold mb-10  text-center">
+            <span className=" h-1 block  w-10 bg-BAccent" />
             <TrendingUp className=" h-10 w-10 text-BAccent font-extrabold" />
             Trending
-            <span className=" h-2 block  w-10 bg-BAccent" />
+            <span className=" h-1 block  w-10 bg-BAccent" />
           </h2>
 
-          <div>
-            <div className=" mx-auto mt-10   w-[200px] rounded-full overflow-hidden aspect-square  relative ">
-              <Image
-                alt="image"
-                fill
-                src={"/Chiamaka.jpeg"}
-                className=" w-full h-full object-top   object-cover  "
-              />
+          <div className=" flex">
+            <div className="  mx-auto gap-2   items-center flex  sm:flex-row md:flex-col ">
+              <div className=" md:mx-auto   mt-5 aspect-square  w-[100px] border  md:w-[200px] rounded-full overflow-hidden  relative ">
+                <Image
+                  alt="image"
+                  fill
+                  src={"/Chiamaka.jpeg"}
+                  className="  w-full h-full object-top   object-cover  "
+                />
+              </div>
+              {/* writeup */}
+              <p className="  md:mx-auto    capitalize text-black p text-center line-clamp-2 max-w-[30ch]   mt-4 ">
+                Hover around the wourd and see this ugo a sdlasd this is what
+                how sould i have to this
+              </p>
             </div>
-            {/* writeup */}
-
-            <p className="mx-auto  capitalize text-black p text-center line-clamp-2 max-w-[30ch]   mt-4 ">
-              Hover around the wourd and see this ugo a sdlasd this is what how
-              sould i have to this
-            </p>
           </div>
-          <div>
-            <div className=" mx-auto mt-10   w-[200px] rounded-full overflow-hidden aspect-square  relative ">
-              <Image
-                alt="image"
-                fill
-                src={"/Chiamaka.jpeg"}
-                className=" w-full h-full object-top  object-cover  "
-              />
+          <div className=" flex">
+            <div className="  mx-auto gap-2   items-center flex  sm:flex-row md:flex-col ">
+              <div className=" md:mx-auto   mt-5 aspect-square  w-[100px] border  md:w-[200px] rounded-full overflow-hidden  relative ">
+                <Image
+                  alt="image"
+                  fill
+                  src={"/Chiamaka.jpeg"}
+                  className="  w-full h-full object-top   object-cover  "
+                />
+              </div>
+              {/* writeup */}
+              <p className="  md:mx-auto    capitalize text-black p text-center line-clamp-2 max-w-[30ch]   mt-4 ">
+                Hover around the wourd and see this ugo a sdlasd this is what
+                how sould i have to this
+              </p>
             </div>
-            {/* writeup */}
-
-            <p className="mx-auto  capitalize text-black p text-center line-clamp-2  max-w-[30ch]   mt-4 ">
-              Hover around the wourd and see this ugo a sdlasd this is what how
-              sould i have to this
-            </p>
           </div>
-          <div>
-            <div className=" mx-auto mt-10   w-[200px] rounded-full overflow-hidden aspect-square  relative ">
-              <Image
-                alt="image"
-                fill
-                src={"/Chiamaka.jpeg"}
-                className=" w-full h-full   object-cover  "
-              />
+          <div className=" flex">
+            <div className="  mx-auto gap-2   items-center flex  sm:flex-row md:flex-col ">
+              <div className=" md:mx-auto   mt-5 aspect-square  w-[100px] border  md:w-[200px] rounded-full overflow-hidden  relative ">
+                <Image
+                  alt="image"
+                  fill
+                  src={"/Chiamaka.jpeg"}
+                  className="  w-full h-full object-top   object-cover  "
+                />
+              </div>
+              {/* writeup */}
+              <p className="  md:mx-auto    capitalize text-black p text-center line-clamp-2 max-w-[30ch]   mt-4 ">
+                Hover around the wourd and see this ugo a sdlasd this is what
+                how sould i have to this
+              </p>
             </div>
-            {/* writeup */}
-
-            <p className="mx-auto  capitalize text-black p text-center line-clamp-2 max-w-[30ch]   mt-4 ">
-              Hover around the wourd and see this ugo a sdlasd this is what how
-              sould i have to this
-            </p>
           </div>
 
           {/* second post */}
@@ -103,8 +106,8 @@ function Hero() {
       <div className=" self-start  sticky top-0   col-span-1 order-3 md:order-2 ">
         <div>
           <h2 className="  justify-center flex items-center gap-2 h1  uppercase font-outfit  font-extrabold mb-10  text-center">
-            <span className=" h-2 block  w-10 bg-BAccent" />
-            Latest <span className=" h-2 block  w-10 bg-BAccent" />
+            <span className=" h-1 block  w-10 bg-BAccent" />
+            Latest <span className=" h-1 block  w-10 bg-BAccent" />
           </h2>
         </div>
         <div>

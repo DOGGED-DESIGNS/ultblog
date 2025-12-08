@@ -19,7 +19,7 @@ export default function page() {
       <Newpost />
       <Explore />
       <Funstuff />
-      <Footer />
+      {/* <Footer /> */}
     </MaxWrapper>
   );
 }

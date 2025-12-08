@@ -9,7 +9,7 @@ export default function Explore() {
         Explore
       </h1>
 
-      <div className=" max-w-screen-lg mx-auto grid grid-cols-4 gap-20">
+      <div className=" max-w-screen-lg mx-auto grid grid-cols-1 px-24 lg:grid-cols-4 gap-20">
         <div>
           <div className=" relative w-full aspect-square">
             <Image
@@ -20,6 +20,9 @@ export default function Explore() {
             />
             <div className=" absolute  w-16   aspect-square bg-BAccent -left-5 -bottom-5" />
           </div>
+          <p className=" mt-1 text-right font-bold p2 font-outfit uppercase">
+            Feature
+          </p>
         </div>
         <div>
           <div className=" relative w-full aspect-square">
@@ -31,6 +34,9 @@ export default function Explore() {
             />
             <div className=" absolute  w-16   aspect-square bg-BAccent -left-5 -bottom-5" />
           </div>
+          <p className=" mt-1 text-right font-bold p2 font-outfit uppercase">
+            Feature
+          </p>
         </div>
         <div>
           <div className=" relative w-full aspect-square">
@@ -42,6 +48,9 @@ export default function Explore() {
             />
             <div className=" absolute  w-16   aspect-square bg-BAccent -left-5 -bottom-5" />
           </div>
+          <p className=" mt-1 text-right font-bold p2 font-outfit uppercase">
+            Feature
+          </p>
         </div>
         <div>
           <div className=" relative w-full aspect-square">

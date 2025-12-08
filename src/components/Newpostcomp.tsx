@@ -14,10 +14,10 @@ export default function Newpostcomp() {
       </div>
 
       <div className=" col-span-1">
-        <h6 className=" h6 tracking-wide mb-2 font-bold   uppercase font-outfit text-slate-400">
+        <h6 className=" h8 tracking-wide mb-2 font-bold   uppercase font-outfit text-slate-400">
           inspired
         </h6>
-        <h2 className=" h3 font-bold line-clamp-3 capitalize  ">
+        <h2 className=" p font-bold line-clamp-3 capitalize  ">
           Meet Jeniffer Mairo, the CEO championing African Creators and Gender
           Equitable Stories{" "}
         </h2>
