@@ -13,6 +13,8 @@ import { db } from "@/db/connect";
 import { Category } from "@/generated/prisma/client";
 import { SunIcon } from "lucide-react";
 import Categorytable from "./Categorytable";
+import { DataTable } from "./DataTable";
+import { ultCategory } from "@/lib/data/ultResult";
 
 // Props provided automatically by App Router
 interface PageProps {
@@ -35,13 +37,16 @@ export default async function Page({ params }: PageProps) {
   // Fetch directly from DB (this runs on the server automatically)
   const data: Category[] = await db.category.findMany();
 
+  const result = await ultCategory(category);
+
   return (
     <div>
-      {/* Example content */}
-      {/* <h1 className="p-4 text-xl font-bold">Category: {category}</h1>
-      <pre className="p-4">{JSON.stringify(data, null, 2)}</pre> */}
       <div className=" px-4">
-        <Categorytable tableTitle={category} value={category} />
+        {/* <Categorytable tableTitle={category} value={category} /> */}
+        <h1 className=" text-center h1  capitalize font-semibold font-outfit  my-5 ">
+          {`All Posts on ${category} Category`}{" "}
+        </h1>
+        <DataTable data={result} />
       </div>
     </div>
   );

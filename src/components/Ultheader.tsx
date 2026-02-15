@@ -35,7 +35,7 @@ const Ultheader = () => {
             </BreadcrumbItem>
             {segment.map((item, index) => (
               <>
-                <BreadcrumbSeparator className="hidden md:block" />
+                <BreadcrumbSeparator className="" />
 
                 <BreadcrumbItem key={index} className=" md:block">
                   <BreadcrumbLink href="#"> {item} </BreadcrumbLink>

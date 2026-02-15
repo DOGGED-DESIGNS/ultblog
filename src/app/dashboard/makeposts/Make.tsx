@@ -41,7 +41,13 @@ import { useState } from "react";
 import { toast } from "sonner";
 import z from "zod";
 
-export default function Make({ category }: { category: Category[] }) {
+export default function Make({
+  category,
+  user,
+}: {
+  category: Category[];
+  user: string;
+}) {
   // usestate
 
   const [tags, setTags] = useState<string[]>([]);
@@ -80,7 +86,7 @@ export default function Make({ category }: { category: Category[] }) {
     category: string;
     tags: string[];
     content: string;
-    author: "uzoechijerry@gmail.com";
+    author: string;
     thumbnail: string;
     status: "DRAFT" | "PUBLISHED";
   };
@@ -126,7 +132,7 @@ export default function Make({ category }: { category: Category[] }) {
     onSubmit: ({ value }) => {
       //  upload thi thumbnail check if there is file inside
       const thumbUrl = "/Achraf.jpeg";
-      const author = "uzoechijerry@gmail.com";
+      const author = user;
       const status = "DRAFT";
 
       if (!tags.length) {

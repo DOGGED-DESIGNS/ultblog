@@ -1,7 +1,9 @@
 import { ChartAreaInteractive } from "@/components/chart-area-interactive";
-import { DataTable } from "@/components/data-table";
+import { DataTable } from "./DataTable";
+import { PostPerformance } from "@/types/Initialdata";
 import {
   LogOut,
+  Router,
   SunIcon,
   TrendingDownIcon,
   TrendingUpIcon,
@@ -64,9 +66,11 @@ const trendStyles = {
 export default function Home({
   stats,
   chartData,
+  result,
 }: {
   stats: DashboardStats;
   chartData: HomeProps;
+  result: PostPerformance[];
 }) {
   const {
     icon: Posticon,
@@ -83,7 +87,6 @@ export default function Home({
     color: viewsColor,
     template: templateView,
   } = trendConfig[stats.views.trend];
-
   return (
     <>
       <div className="flex flex-1 flex-col">
@@ -214,7 +217,7 @@ export default function Home({
             <div className="px-4 lg:px-6">
               <ChartAreaInteractive chartData={chartData} />
             </div>
-            <DataTable data={data} />
+            <DataTable data={result} />
           </div>
         </div>
       </div>

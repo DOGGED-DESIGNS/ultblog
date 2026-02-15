@@ -1,9 +1,16 @@
 // src/lib/role-nav.ts
+import {
+  BadgePlus,
+  Newspaper,
+  Signature,
+  StickyNote,
+  type LucideIcon,
+} from "lucide-react";
 
 export type SidebarLink = {
   title: string;
   href: string;
-  icon?: React.ReactNode; // optional, for icons
+  icon?: LucideIcon; // optional, for icons
 };
 
 export const ROLE_NAV: Record<
@@ -27,10 +34,10 @@ export const ROLE_NAV: Record<
     { title: "Categories", href: "/dashboard/content/categories" },
   ],
   SUPER_ADMIN: [
-    { title: "Dashboard", href: "/dashboard/super-admin" },
-    { title: "All Posts", href: "/dashboard/content/posts" },
-    { title: "Writers", href: "/dashboard/content/writers" },
-    { title: "Categories", href: "/dashboard/content/categories" },
-    { title: "Analytics", href: "/dashboard/analytics" },
+    { title: "Add Category", href: "/dashboard/category", icon: BadgePlus },
+    { title: "OnBoard Writers", href: "/dashboard/authors", icon: Signature },
+    { title: "Send News_Letter", href: "/dashboard/", icon: Newspaper },
+    { title: "Make Posts", href: "/dashboard/makeposts", icon: StickyNote },
+    // { title: "Analytics", href: "/dashboard/analytics" },
   ],
 };

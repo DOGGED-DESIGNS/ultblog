@@ -1,5 +1,9 @@
+import z from "zod";
 import Home from "./Home";
 import { db } from "@/db/connect";
+import { ultResult } from "@/lib/data/ultResult";
+
+import { PostPerformance } from "@/types/Initialdata";
 
 type Trend = "up" | "down" | "stable";
 
@@ -120,5 +124,10 @@ export default async function Page() {
   }));
 
   // ────────────── Render Home ──────────────
-  return <Home stats={stats} chartData={chartData} />;
+
+  // THIS IS FOR THE TABLE VALUE
+
+  const result = await ultResult();
+
+  return <Home result={result} stats={stats} chartData={chartData} />;
 }

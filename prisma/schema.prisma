@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
@@ -13,29 +7,28 @@ datasource db {
   provider = "postgresql"
 }
 
-
 model User {
   id            String    @id @default(cuid())
   name          String?
-  email         String   @unique
+  email         String    @unique
   emailVerified DateTime? @map("email_verified")
   image         String?
-  accounts      Account[]
-  sessions      Session[]
-  role      Role      @default(READER)
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  twitter   String?
-  insta     String?
+  role          Role      @default(READER)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  twitter       String?
+  insta         String?
+
+  accounts  Account[]
+  sessions  Session[]
   posts     Post[]    @relation("AuthorPosts")
   comments  Comment[] @relation("UserComments")
- 
+
   @@map("users")
 }
 
 model Post {
   id          String     @id @default(uuid())
-  author      User       @relation("AuthorPosts", fields: [authorId], references: [id])
   authorId    String
   title       String
   slug        String     @unique
@@ -47,112 +40,121 @@ model Post {
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
   thumbnail   String
-  category    Category?  @relation(fields: [categoryId], references: [id])
-  categoryId  String?
-  tags        PostTag[]      // ✅ corrected
-  comments    Comment[]  @relation("PostComments")
-  views       PostView[] 
+
+  // ✅ do NOT cascade — preserve posts if author deleted
+  author User @relation("AuthorPosts", fields: [authorId], references: [id], onDelete: Restrict, onUpdate: Cascade)
+
+  // ✅ do NOT cascade — keep posts if category deleted
+  categoryId String?
+  category   Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull, onUpdate: Cascade)
+
+  tags     PostTag[]
+  comments Comment[]  @relation("PostComments")
+  views    PostView[]
 }
 
 model Category {
-  id    String  @id @default(uuid())
-  name  String  @unique
-  slug  String  @unique
+  id    String @id @default(uuid())
+  name  String @unique
+  slug  String @unique
   posts Post[]
 }
 
 model Tag {
-  id    String  @id @default(uuid())
-  name  String  @unique
-  slug  String  @unique
-  posts PostTag[]   // ✅ corrected
+  id    String @id @default(uuid())
+  name  String @unique
+  slug  String @unique
+  posts PostTag[]
 }
 
 model PostTag {
-  post   Post @relation(fields: [postId], references: [id], onDelete: Cascade)
   postId String
-  tag    Tag  @relation(fields: [tagId], references: [id], onDelete: Cascade)
   tagId  String
+
+  // ✅ join table must cascade
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  tag  Tag  @relation(fields: [tagId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   @@id([postId, tagId])
 }
 
-
 model Comment {
-  id         String   @id @default(uuid())
-  post       Post     @relation("PostComments", fields: [postId], references: [id])
-  postId     String
-  author     User?    @relation("UserComments", fields: [authorId], references: [id])
-  authorId   String?
-  content    String   @db.Text
-  parent     Comment? @relation("CommentReplies", fields: [parentId], references: [id])
-  parentId   String?
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  id        String   @id @default(uuid())
+  postId    String
+  authorId  String?
+  content   String   @db.Text
+  parentId  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  replies    Comment[] @relation("CommentReplies")
+  // ✅ comments must disappear if post deleted
+  post Post @relation("PostComments", fields: [postId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  // ✅ keep comment if user deleted
+  author User? @relation("UserComments", fields: [authorId], references: [id], onDelete: SetNull, onUpdate: Cascade)
+
+  // ✅ delete replies when parent deleted
+  parent  Comment?  @relation("CommentReplies", fields: [parentId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  replies Comment[] @relation("CommentReplies")
 }
 
 model PostView {
   id        String   @id @default(uuid())
-  post      Post     @relation(fields: [postId], references: [id])
   postId    String
-  ipAddress String   // store visitor IP
+  ipAddress String
   device    Device   @default(DESKTOP)
   createdAt DateTime @default(now())
+
+  // ✅ analytics must disappear with post
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 }
 
-
-
-
 model Image {
-  id   String @id @default(cuid())
-  url  String @unique
-  key  String  @unique  // 👈 UploadThing file key
-  hash String  @unique
+  id        String   @id @default(cuid())
+  url       String   @unique
+  key       String   @unique
+  hash      String   @unique
   createdAt DateTime @default(now())
 }
 
-
-
-
 model Account {
-  id                 String  @id @default(cuid())
-  userId             String  @map("user_id")
-  type               String
-  provider           String
-  providerAccountId  String  @map("provider_account_id")
-  refresh_token      String? @db.Text
-  access_token       String? @db.Text
-  expires_at         Int?
-  token_type         String?
-  scope              String?
-  id_token           String? @db.Text
-  session_state      String?
- 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
- 
+  id                String  @id @default(cuid())
+  userId            String  @map("user_id")
+  type              String
+  provider          String
+  providerAccountId String  @map("provider_account_id")
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  // ✅ auth data must disappear with user
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
   @@unique([provider, providerAccountId])
   @@map("accounts")
 }
- 
+
 model Session {
   id           String   @id @default(cuid())
   sessionToken String   @unique @map("session_token")
   userId       String   @map("user_id")
   expires      DateTime
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
- 
+
+  // ✅ session must disappear with user
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
   @@map("sessions")
 }
- 
 
- 
 model VerificationToken {
   identifier String
   token      String
   expires    DateTime
- 
+
   @@unique([identifier, token])
   @@map("verification_tokens")
 }
@@ -163,7 +165,6 @@ enum Role {
   AUTHOR
   READER
 }
-
 
 enum PostStatus {
   DRAFT

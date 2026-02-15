@@ -27,6 +27,8 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
   useSidebar,
 } from "@/components/ui/sidebar";
 import {
@@ -34,6 +36,10 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "./ui/collapsible";
+import { Category } from "@/generated/prisma/client";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 const items = {
   title: "Category",
@@ -43,24 +49,28 @@ const items = {
 };
 
 export function NavProjects({
-  projects,
+  category,
+  writers,
+  admin,
+  superadmin,
 }: {
-  projects: {
-    name: string;
-    url: string;
-    icon: LucideIcon;
-  }[];
+  category: { title: string; url: string }[];
+  writers: { name: string | null; email: string }[];
+  admin: { name: string | null; email: string }[];
+  superadmin: { name: string | null; email: string }[];
 }) {
   const { isMobile } = useSidebar();
 
+  const pathname = usePathname();
+  // const isActive = pathname.endsWith(subItem.title);
+  const segments = pathname.split("/").filter(Boolean); // ["dashboard", "category", "Relationship"]
+  const lastSegment = segments[segments.length - 1]; // "Relationship"
+
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
-      <SidebarGroupLabel>
-        Explore Categories & Authors & Roles
-      </SidebarGroupLabel>
+      <SidebarGroupLabel>Explore Categories & Roles</SidebarGroupLabel>
       <SidebarMenu>
-        <Collapsible
-          // key={projects.name}
+        {/* <Collapsible
           asChild
           defaultOpen={items.isActive}
           className="group/collapsible"
@@ -75,17 +85,14 @@ export function NavProjects({
             </CollapsibleTrigger>
             <CollapsibleContent>
               <SidebarMenuSub>
-                {/* <Categoryserver /> */}
-                {/* server this is what to do */}
+               
               </SidebarMenuSub>
             </CollapsibleContent>
           </SidebarMenuItem>
 
-          {/* This is the second */}
-        </Collapsible>
+        </Collapsible> */}
 
-        {/* writers */}
-
+        {/* category */}
         <Collapsible
           // key={projects.name}
           asChild
@@ -94,16 +101,30 @@ export function NavProjects({
         >
           <SidebarMenuItem>
             <CollapsibleTrigger asChild>
-              <SidebarMenuButton tooltip={"Authors"}>
+              <SidebarMenuButton tooltip={"Category"}>
                 <BookAIcon />
-                <span>Authors</span>
+                <span>Category</span>
                 <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
               </SidebarMenuButton>
             </CollapsibleTrigger>
             <CollapsibleContent>
               <SidebarMenuSub>
-                {/* <Categoryserver /> */}
-                {/* server this is what to do */}
+                {category.map((item) => (
+                  <SidebarMenuSubItem key={item.title}>
+                    <SidebarMenuSubButton asChild>
+                      <Link
+                        className={cn(
+                          "",
+                          lastSegment === item.title &&
+                            "bg-primary hover:bg-primary/90 text-white",
+                        )}
+                        href={item.url}
+                      >
+                        <span>{item.title}</span>
+                      </Link>
+                    </SidebarMenuSubButton>
+                  </SidebarMenuSubItem>
+                ))}
               </SidebarMenuSub>
             </CollapsibleContent>
           </SidebarMenuItem>
@@ -112,7 +133,6 @@ export function NavProjects({
         </Collapsible>
 
         {/* Roles */}
-
         <Collapsible
           // key={projects.name}
           asChild
@@ -129,8 +149,112 @@ export function NavProjects({
             </CollapsibleTrigger>
             <CollapsibleContent>
               <SidebarMenuSub>
-                {/* <Categoryserver /> */}
-                {/* server this is what to do */}
+                {/* inner collapsible */}
+
+                <Collapsible
+                  key={"cow"}
+                  asChild
+                  defaultOpen={false}
+                  className="group/inner-collapsible"
+                >
+                  <SidebarMenuItem>
+                    <CollapsibleTrigger asChild>
+                      <SidebarMenuButton tooltip={"Roles"}>
+                        <UserCircle />
+                        <span>Admin</span>
+                        <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/inner-collapsible:rotate-90" />
+                      </SidebarMenuButton>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                      <SidebarMenuSub>
+                        {admin.length !== 0 && (
+                          <SidebarMenuItem>
+                            <SidebarMenuButton>
+                              {admin?.map((item, index) => (
+                                <>
+                                  <Link key={index} href={"#"}>
+                                    {item.name}
+                                  </Link>
+                                </>
+                              ))}
+                            </SidebarMenuButton>
+                          </SidebarMenuItem>
+                        )}
+                      </SidebarMenuSub>
+                    </CollapsibleContent>
+                  </SidebarMenuItem>
+                </Collapsible>
+
+                {/* inner collapsible 2 */}
+
+                <Collapsible
+                  key={"cow"}
+                  asChild
+                  defaultOpen={false}
+                  className="group/inner-collapsible"
+                >
+                  <SidebarMenuItem>
+                    <CollapsibleTrigger asChild>
+                      <SidebarMenuButton tooltip={"Roles"}>
+                        <UserCircle />
+                        <span>Super_Admin</span>
+                        <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/inner-collapsible:rotate-90" />
+                      </SidebarMenuButton>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                      <SidebarMenuSub>
+                        {superadmin.length !== 0 && (
+                          <SidebarMenuItem>
+                            <SidebarMenuButton className=" bg-red-600 text-white">
+                              {superadmin?.map((item, index) => (
+                                <>
+                                  <Link key={index} href={"#"}>
+                                    {item.name}
+                                  </Link>
+                                </>
+                              ))}
+                            </SidebarMenuButton>
+                          </SidebarMenuItem>
+                        )}
+                      </SidebarMenuSub>
+                    </CollapsibleContent>
+                  </SidebarMenuItem>
+                </Collapsible>
+
+                {/* inner collapsible 3 */}
+                <Collapsible
+                  key={"cow"}
+                  asChild
+                  defaultOpen={false}
+                  className="group/inner-collapsible"
+                >
+                  <SidebarMenuItem>
+                    <CollapsibleTrigger asChild>
+                      <SidebarMenuButton tooltip={"Roles"}>
+                        <UserCircle />
+                        <span>Author</span>
+                        <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/inner-collapsible:rotate-90" />
+                      </SidebarMenuButton>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                      <SidebarMenuSub>
+                        {writers.length !== 0 && (
+                          <SidebarMenuItem>
+                            <SidebarMenuButton className=" bg-red-600 text-white">
+                              {writers?.map((item, index) => (
+                                <>
+                                  <Link key={index} href={"#"}>
+                                    {item.name}
+                                  </Link>
+                                </>
+                              ))}
+                            </SidebarMenuButton>
+                          </SidebarMenuItem>
+                        )}
+                      </SidebarMenuSub>
+                    </CollapsibleContent>
+                  </SidebarMenuItem>
+                </Collapsible>
               </SidebarMenuSub>
             </CollapsibleContent>
           </SidebarMenuItem>

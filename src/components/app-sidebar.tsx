@@ -15,10 +15,28 @@ import {
 import { Icons } from "./Icon";
 import { NavProjects } from "./nav-projects";
 import { BookDashed } from "lucide-react";
+import { ROLE_NAV } from "@/lib/role-nav";
+import { Category, User } from "@/generated/prisma/client";
 
 // This is sample data.
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+type AppSidebarProps = {
+  role: "READER" | "AUTHOR" | "ADMIN" | "SUPER_ADMIN";
+  category: { title: string; url: string }[];
+  writers: { name: string | null; email: string }[];
+  admin: { name: string | null; email: string }[];
+  superadmin: { name: string | null; email: string }[];
+};
+
+export function AppSidebar({
+  role,
+  category,
+  writers,
+  admin,
+  superadmin,
+  ...props
+}: AppSidebarProps & React.ComponentProps<typeof Sidebar>) {
+  const links = ROLE_NAV[role];
   const data = {
     user: {
       name: "Dogged_Designs",
@@ -59,8 +77,15 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </a>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain />
-        <NavProjects projects={data.projects} />
+        <NavMain links={links} />
+        {role === "SUPER_ADMIN" && (
+          <NavProjects
+            admin={admin}
+            superadmin={superadmin}
+            category={category}
+            writers={writers}
+          />
+        )}
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />

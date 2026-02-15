@@ -87,7 +87,7 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "./ui/alert-dialog";
+} from "@/components/ui/alert-dialog";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
@@ -170,13 +170,13 @@ function DraggableRow({
 // DATA TABLE SECTION
 
 export function DataTable({
-  data: initialData,
+  data,
 }: {
   data: z.infer<typeof postPerformanceSchema>[];
 }) {
   const router = useRouter();
 
-  const [data, setData] = React.useState(() => initialData);
+  //   const [data, setData] = React.useState(() => initialData);
   const [rowSelection, setRowSelection] = React.useState({});
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
@@ -227,8 +227,8 @@ export function DataTable({
     },
     onSuccess: (data) => {
       setOpen(false);
-      toast.success("post deleted successfully");
       router.refresh();
+      toast.success("post deleted successfully");
     },
     onError: (error) => {
       setOpen(false);
@@ -246,9 +246,8 @@ export function DataTable({
     },
 
     onSuccess: () => {
-      setLoadingFeaturedId(null);
-
       router.refresh();
+      setLoadingFeaturedId(null);
     },
 
     onError: (error) => {
@@ -267,10 +266,10 @@ export function DataTable({
     },
   });
 
-  React.useEffect(() => {
-    router.refresh();
-    console.log("i have refreshed oo ");
-  }, [isSuccess, featureSucess]);
+  //   React.useEffect(() => {
+  //     router.refresh();
+  //     console.log("i have refreshed oo ");
+  //   }, [isSuccess, featureSucess]);
 
   const columns: ColumnDef<z.infer<typeof postPerformanceSchema>>[] = [
     {
@@ -323,7 +322,7 @@ export function DataTable({
       accessorKey: "category",
       header: () => <div className="w-full text-center"> Category </div>,
       cell: ({ row }) => (
-        <div className=" border  w-full flex justify-center">
+        <div className="   w-full flex justify-center">
           <Badge variant="outline" className=" border-slate-700 px-1.5 ">
             {row.original.category}
           </Badge>
@@ -456,16 +455,16 @@ export function DataTable({
     getFacetedUniqueValues: getFacetedUniqueValues(),
   });
 
-  function handleDragEnd(event: DragEndEvent) {
-    const { active, over } = event;
-    if (active && over && active.id !== over.id) {
-      setData((data) => {
-        const oldIndex = dataIds.indexOf(active.id);
-        const newIndex = dataIds.indexOf(over.id);
-        return arrayMove(data, oldIndex, newIndex);
-      });
-    }
-  }
+  //   function handleDragEnd(event: DragEndEvent) {
+  //     const { active, over } = event;
+  //     if (active && over && active.id !== over.id) {
+  //       setData((data) => {
+  //         const oldIndex = dataIds.indexOf(active.id);
+  //         const newIndex = dataIds.indexOf(over.id);
+  //         return arrayMove(data, oldIndex, newIndex);
+  //       });
+  //     }
+  //   }
 
   return (
     <div>
@@ -478,52 +477,56 @@ export function DataTable({
             View
           </Label>
 
-          <div className="flex items-center gap-2">
-            <Input
-              placeholder="Filter title..."
-              value={
-                (table.getColumn("title")?.getFilterValue() as string) ?? ""
-              }
-              onChange={(event) =>
-                table.getColumn("title")?.setFilterValue(event.target.value)
-              }
-              className="max-w-sm"
-            />
+          <div className="flex  w-full justify-between items-center gap-2">
+            <div>
+              <Input
+                placeholder="Filter title..."
+                value={
+                  (table.getColumn("title")?.getFilterValue() as string) ?? ""
+                }
+                onChange={(event) =>
+                  table.getColumn("title")?.setFilterValue(event.target.value)
+                }
+                className="max-w-sm"
+              />
+            </div>
 
-            {/*  text input section */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="sm">
-                  <ColumnsIcon />
-                  <span className="hidden lg:inline">Customize Columns</span>
-                  <span className="lg:hidden">Columns</span>
-                  <ChevronDownIcon />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-56">
-                {table
-                  .getAllColumns()
-                  .filter(
-                    (column) =>
-                      typeof column.accessorFn !== "undefined" &&
-                      column.getCanHide(),
-                  )
-                  .map((column) => {
-                    return (
-                      <DropdownMenuCheckboxItem
-                        key={column.id}
-                        className="capitalize"
-                        checked={column.getIsVisible()}
-                        onCheckedChange={(value) =>
-                          column.toggleVisibility(!!value)
-                        }
-                      >
-                        {column.id}
-                      </DropdownMenuCheckboxItem>
-                    );
-                  })}
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <div>
+              {/*  text input section */}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline" size="sm">
+                    <ColumnsIcon />
+                    <span className="hidden lg:inline">Customize Columns</span>
+                    <span className="lg:hidden">Columns</span>
+                    <ChevronDownIcon />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56">
+                  {table
+                    .getAllColumns()
+                    .filter(
+                      (column) =>
+                        typeof column.accessorFn !== "undefined" &&
+                        column.getCanHide(),
+                    )
+                    .map((column) => {
+                      return (
+                        <DropdownMenuCheckboxItem
+                          key={column.id}
+                          className="capitalize"
+                          checked={column.getIsVisible()}
+                          onCheckedChange={(value) =>
+                            column.toggleVisibility(!!value)
+                          }
+                        >
+                          {column.id}
+                        </DropdownMenuCheckboxItem>
+                      );
+                    })}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
           </div>
         </div>
         <TabsContent
@@ -534,7 +537,7 @@ export function DataTable({
             <DndContext
               collisionDetection={closestCenter}
               modifiers={[restrictToVerticalAxis]}
-              onDragEnd={handleDragEnd}
+              //   onDragEnd={handleDragEnd}
               sensors={sensors}
               id={sortableId}
             >

@@ -27,8 +27,12 @@ import {
 } from "@/components/ui/sidebar";
 import { cn } from "@/lib/tiptap-utils";
 import Categoryserver from "./actionfolder/Categoryserver";
-
-export function NavMain() {
+import { SidebarLink } from "@/lib/role-nav";
+import Link from "next/link";
+type NavMainProps = {
+  links: SidebarLink[];
+};
+export function NavMain({ links }: NavMainProps) {
   // const navMain2 = {
   //     title: "Roles",
   //     url: "#",
@@ -62,18 +66,16 @@ export function NavMain() {
         {/* this is the button section */}
 
         <SidebarMenuItem>
-          <SidebarMenuButton tooltip={"Add Category"}>
-            <BadgePlus /> <span>Add Categotry</span>
-          </SidebarMenuButton>
-          <SidebarMenuButton>
-            <Signature /> <span>OnBoard Writers</span>
-          </SidebarMenuButton>
-          <SidebarMenuButton>
-            <Newspaper /> <span> Send News_Letter</span>
-          </SidebarMenuButton>
-          <SidebarMenuButton>
-            <StickyNote /> <span> Make Posts</span>
-          </SidebarMenuButton>
+          {links.map((items, index) => (
+            <>
+              <Link href={items.href} className=" flex gap-1">
+                <SidebarMenuButton tooltip={items.title}>
+                  {items.icon && <items.icon />}
+                  <span> {items.title} </span>
+                </SidebarMenuButton>
+              </Link>
+            </>
+          ))}
         </SidebarMenuItem>
 
         {/* {items.map((item) => (
